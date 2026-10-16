@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Trace loopback through a raw socket (Linux)
+        if: runner.os == 'Linux'
+        run: sudo ./build/hoptrace -n 127.0.0.1
+
+      - name: Trace loopback (Windows)
+        if: runner.os == 'Windows'
+        run: .\build\Release\hoptrace.exe -n 127.0.0.1
+
+      - name: Trace IPv6 loopback (informational, runners may lack IPv6)
+        continue-on-error: true
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            ./build/Release/hoptrace.exe -n ::1
+          else
+            sudo ./build/hoptrace -n ::1
+          fi
