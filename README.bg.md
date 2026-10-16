@@ -34,7 +34,7 @@ Destination reached at hop 3.
 **Linux**
 
 ```sh
-git clone https://github.com/alexDzhen/hoptrace.git
+git clone https://github.com/alexDzhen/Hop-Trace.git
 cd hoptrace
 ./scripts/build.sh
 sudo ./build/hoptrace example.com
@@ -53,7 +53,7 @@ hoptrace example.com
 изпълнете командите в "Developer PowerShell for VS 2022", където `cmake` е наличен.
 
 ```powershell
-git clone https://github.com/alexDzhen/hoptrace.git
+git clone https://github.com/alexDzhen/Hop-Trace.git
 cd hoptrace
 powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 .\build\Release\hoptrace.exe example.com

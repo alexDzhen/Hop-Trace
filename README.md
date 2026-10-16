@@ -34,7 +34,7 @@ You need CMake 3.20 or newer and a C++17 compiler.
 **Linux**
 
 ```sh
-git clone https://github.com/alexDzhen/hoptrace.git
+git clone https://github.com/alexDzhen/Hop-Trace.git
 cd hoptrace
 ./scripts/build.sh
 sudo ./build/hoptrace example.com
@@ -53,7 +53,7 @@ Install Visual Studio 2022 with the "Desktop development with C++" workload and 
 the commands in "Developer PowerShell for VS 2022", where `cmake` is already available.
 
 ```powershell
-git clone https://github.com/alexDzhen/hoptrace.git
+git clone https://github.com/alexDzhen/Hop-Trace.git
 cd hoptrace
 powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 .\build\Release\hoptrace.exe example.com
